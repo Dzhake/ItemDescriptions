@@ -7,14 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemDescriptions", "ItemDes
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
 		Rebuilt|x86 = Rebuilt|x86
 		Vanilla|x86 = Vanilla|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{891D0981-DB0E-4845-996B-E7F608DED682}.Rebuilt|x86.ActiveCfg = Rebuilt|x86
-		{891D0981-DB0E-4845-996B-E7F608DED682}.Rebuilt|x86.Build.0 = Rebuilt|x86
-		{891D0981-DB0E-4845-996B-E7F608DED682}.Vanilla|x86.ActiveCfg = Vanilla|x86
-		{891D0981-DB0E-4845-996B-E7F608DED682}.Vanilla|x86.Build.0 = Vanilla|x86
+		{891D0981-DB0E-4845-996B-E7F608DED682}.Debug|x86.ActiveCfg = Debug|x86
+		{891D0981-DB0E-4845-996B-E7F608DED682}.Debug|x86.Build.0 = Debug|x86
+		{891D0981-DB0E-4845-996B-E7F608DED682}.Rebuilt|x86.ActiveCfg = Debug|x86
+		{891D0981-DB0E-4845-996B-E7F608DED682}.Vanilla|x86.ActiveCfg = Debug|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
