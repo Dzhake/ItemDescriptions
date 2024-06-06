@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/ItemDescriptions.dll
+/ItemDescriptions_compiled.hash
+/ItemDescriptionsRebuilt.dll
+/ItemDescriptionsRebuilt.pdb
+/ItemDescriptionsRebuiltData.txt

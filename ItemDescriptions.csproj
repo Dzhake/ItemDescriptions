@@ -80,7 +80,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\ItemDescriptions\*.cs" />
+    <Compile Include="ItemDescriptions\AssemblyInfo.cs" />
+    <Compile Include="ItemDescriptions\MAutoPatchAttribute.cs" />
+    <Compile Include="ItemDescriptions\MAutoPatchHandler.cs" />
+    <Compile Include="ItemDescriptions\MModClass.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
