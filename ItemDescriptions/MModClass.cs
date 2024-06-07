@@ -117,6 +117,9 @@ namespace ItemDescriptions
             MAutoPatchHandler.Patch();
         }
 
+        public static FieldInfo _itemsInfo = typeof(EditorGroupMenu).GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance);
+        public static FieldInfo _ownerInfo = typeof(ContextMenu).GetField("_owner", BindingFlags.NonPublic | BindingFlags.Instance);
+
         public static Editor editor;
 
         public static bool debug = true;
@@ -128,16 +131,16 @@ namespace ItemDescriptions
 
             try
             {
-                foreach (ContextMenu menu in (List<ContextMenu>)typeof(EditorGroupMenu).GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(__instance))
+                foreach (ContextMenu menu in (List<ContextMenu>)_itemsInfo.GetValue(__instance))
                 {
                     if (menu.text != "" && !menu.root)
                     {
                         string path = menu.text;
-                        ContextMenu menu1 = (ContextMenu)typeof(ContextMenu).GetField("_owner", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(menu);
+                        ContextMenu menu1 = (ContextMenu)_ownerInfo.GetValue(menu);
                         path += "/" + menu1.text;
                         while (menu1.root == false)
                         {
-                            menu1 = typeof(ContextMenu).GetField("_owner", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(menu1) as ContextMenu;
+                            menu1 = _ownerInfo.GetValue(menu1) as ContextMenu;
                             if (menu1.text != null && menu1.text != "")
                             {
                                 path += "/" + menu1.text;
