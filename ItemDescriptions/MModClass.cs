@@ -106,6 +106,7 @@ namespace ItemDescriptions
         protected override void OnPreInitialize()
         {
             Config = configuration;
+            DependencyResolver.ResolveDependencies();
         }
         
         /// <summary>
@@ -114,14 +115,6 @@ namespace ItemDescriptions
         protected override void OnPostInitialize()
         {
             MAutoPatchHandler.Patch();
-
-            DevConsole.Log("Dzhake is here :)", Color.Green);
-
-#if REBUILT
-            DevConsole.Log("You are using rebuilt rn", Color.Green);
-#else
-            DevConsole.Log("You are using vanilla rn", Color.Green);
-#endif
         }
 
         public static Editor editor;
