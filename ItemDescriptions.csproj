@@ -7,7 +7,6 @@
     <ProjectGuid>{891D0981-DB0E-4845-996B-E7F608DED682}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MClient</RootNamespace>
     <AssemblyName>ItemDescriptions</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -15,7 +14,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <OutputPath>bin\x86\Debug\</OutputPath>
+    <OutputPath>.\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DGSteam, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -63,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ItemDescriptions\AssemblyInfo.cs" />
+    <Compile Include="ItemDescriptions\DependencyResolver.cs" />
     <Compile Include="ItemDescriptions\MAutoPatchAttribute.cs" />
     <Compile Include="ItemDescriptions\MAutoPatchHandler.cs" />
     <Compile Include="ItemDescriptions\MModClass.cs" />
