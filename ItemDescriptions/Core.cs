@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using AddedContent.Firebreak;
 using DuckGame;
 using ItemDescriptions.PatchSystem;
 
@@ -55,6 +56,17 @@ namespace ItemDescriptions
         protected override void OnPostInitialize()
         {
             AutoPatchHandler.Patch();
+            foreach (KeyValuePair<string,string> kvp in Description.Descriptions)
+            {
+                string key = kvp.Key;
+                string value = kvp.Value;
+                string name = key.Substring(key.LastIndexOf('/') + 1);
+                if (Description.Items.TryGetValue(name, out string existingValue))
+                {
+                    Description.Items[name] = $"{existingValue}\n|RED|DUPLICATE NAME!\n|WHITE|{value}";
+                }
+                Description.Items.Add(name, value);
+            }
         }
 
         public static FieldInfo _itemsInfo = typeof(EditorGroupMenu).GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -63,8 +75,12 @@ namespace ItemDescriptions
         public static Editor editor;
 
         public static bool debug = false;
+        public static bool inGamePreview;
 
-        [AutoPatch(typeof(EditorGroupMenu),"InitializeGroups",MPatchType.Postfix)]
+        [Marker.DevConsoleCommand]
+        public static void ToggleInGameDescriptionPreview() => inGamePreview = !inGamePreview;
+
+        [AutoPatch(typeof(EditorGroupMenu),"InitializeGroups", MPatchType.Postfix)]
         public static void PatchPost_EditorGroupMenu_InitializeGroups(EditorGroupMenu __instance)
         {
             editor = Level.current as Editor;
@@ -73,36 +89,34 @@ namespace ItemDescriptions
             {
                 foreach (ContextMenu menu in (List<ContextMenu>)_itemsInfo.GetValue(__instance))
                 {
-                    if (menu.text != "" && !menu.root)
+                    if (menu.text == "" || menu.root) continue;
+
+                    string path = menu.text;
+                    ContextMenu menu1 = (ContextMenu)_ownerInfo.GetValue(menu);
+                    path += "/" + menu1.text;
+                    while (menu1.root == false)
                     {
-                        string path = menu.text;
-                        ContextMenu menu1 = (ContextMenu)_ownerInfo.GetValue(menu);
-                        path += "/" + menu1.text;
-                        while (menu1.root == false)
+                        menu1 = _ownerInfo.GetValue(menu1) as ContextMenu;
+                        if (!string.IsNullOrEmpty(menu1.text))
                         {
-                            menu1 = _ownerInfo.GetValue(menu1) as ContextMenu;
-                            if (!string.IsNullOrEmpty(menu1.text))
-                            {
-                                path += "/" + menu1.text;
-                            }
+                            path += "/" + menu1.text;
                         }
-
-                        path = ReversStringBySymbols(path, '/');
-
-                        if (menu.tooltip == null) continue;
-
-                        if (Description.Descriptions.TryGetValue(path, out string description))
-                        {
-                            menu.tooltip = "|GREEN|[ID]|WHITE| " + description;//description;
-                            DevConsole.Log(path + " : " + description, Color.Yellow);
-                        }
-
-                        if (debug)
-                        {
-                            menu.tooltip = path + " |YELLOW|Orig: " + menu.tooltip; // allows to detect path
-                        }
-
                     }
+
+                    path = ReversStringBySymbols(path, '/');
+
+                    if (menu.tooltip == null) continue;
+
+                    if (Description.Descriptions.TryGetValue(path, out string description))
+                    {
+                        menu.tooltip = "|GREEN|[ID]|WHITE| " + description; //description;
+                        DevConsole.Log(path + " : " + description, Color.Yellow);
+                    }
+
+                    if (!debug) continue;
+
+                    if (string.IsNullOrEmpty(menu.tooltip)) menu.tooltip = "[EMPTY]";
+                    menu.tooltip = $"\"{path}\" |YELLOW|Orig: {menu.tooltip}"; // allows to detect path
                 }
             }
             catch (Exception e)
@@ -115,7 +129,6 @@ namespace ItemDescriptions
         public static string ReversStringBySymbols(string text, char symbol)
         {
             string result = "";
-
             string[] words = text.Split(symbol);
 
             foreach (string word in words.Reverse())
@@ -123,10 +136,8 @@ namespace ItemDescriptions
                 result += word + symbol;
             }
 
-            result = result.Substring(0, result.Length - 1);
-
+            result = result.Remove(result.Length - 1);
             return result;
         }
-        
     }
 }

@@ -22,7 +22,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DuckGame">
-      <HintPath>N:\Steam\steamapps\common\Duck Game\DuckGame.exe</HintPath>
+      <HintPath>N:\Steam\steamapps\workshop\content\312530\3132351890\Rebuilder\dgr\DuckGame.exe</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
@@ -63,10 +63,11 @@
   <ItemGroup>
     <Compile Include="ItemDescriptions\AssemblyInfo.cs" />
     <Compile Include="ItemDescriptions\DependencyResolver.cs" />
-    <Compile Include="ItemDescriptions\Emerald.cs" />
+    <Compile Include="ItemDescriptions\Descriptions.cs" />
     <Compile Include="ItemDescriptions\AutoPatchAttribute.cs" />
     <Compile Include="ItemDescriptions\AutoPatchHandler.cs" />
     <Compile Include="ItemDescriptions\Core.cs" />
+    <Compile Include="ItemDescriptions\Patches.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

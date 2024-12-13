@@ -4,13 +4,20 @@ namespace ItemDescriptions
 {
     public class Description
     {
+        /// <summary>
+        /// Dictionary based on path to item in editor
+        /// </summary>
         public static Dictionary<string, string> Descriptions = new()
         {
             //ws - from workshop
             //dz - by dzhake
 
+            //* - second level
+            //** - third level
+            //etc.
 
-            //2emerald
+
+            #region 2emerald
 
             //*ai
             {"2emerald/ai/AiDuck","Runs to players, and kills on touch"},
@@ -55,6 +62,38 @@ namespace ItemDescriptions
             {"2emerald/props/Big Crate","Woah that's pretty big"}, //dz
             {"2emerald/props/Bigger Crate","*notices ur bigger crate* OwO whats this?"}, //dz
             {"2emerald/props/Trash Can","Runs right, flips direction when collides with wall, shows \"1UP\" Text when touches duck"}, //dz
+            #endregion
+
+            #region HaloWeapons
+            //ws
+
+            //*equipment
+            {"Halo Weapons/Equipment/Thruster", "Increases your speed when you press quack(and adds a cool trail effect)"},
+
+            //*weapons
+            {"Halo Weapons/Weapons/BR75", "Classic burst weapon"},
+            {"Halo Weapons/Weapons/Cindershot", "Shoots round heavy bouncy bullets"},
+            {"Halo Weapons/Weapons/Energy Sword", "The longer you hold the button the farther you dash. Breaks after destroying 10 things"},
+            {"Halo Weapons/Weapons/Heat Wave", "Weird shotgun. You can swap modes by pressing quack"},
+            {"Halo Weapons/Weapons/Impulse Grenade", "Pushes everything around it with great force when explodes"},
+            {"Halo Weapons/Weapons/MA40", "Your basic assault rifle"},
+            {"Halo Weapons/Weapons/Mangler", "You can use it as a melee weapon when you run out of ammo"},
+            {"Halo Weapons/Weapons/Needler", "No need to aim at your opponents, the bullets will do it for you"},
+            {"Halo Weapons/Weapons/Pulse Carabine", "Shoots multiple bullets connected by lightings. Overheats if you shoot too fast"},
+            {"Halo Weapons/Weapons/Ravager", "Shoots three small lasers by default and a single big one when charged"},
+            {"Halo Weapons/Weapons/Sentinel Beam", "Heavy weapon that emits short beam"},
+            {"Halo Weapons/Weapons/Shock Rifle", "Sniper rifle that shoots energy beams"},
+            {"Halo Weapons/Weapons/Spike Grenade", "Sticks to everything it touches when activated"},
+
+            //*props
+            {"Halo Weapons/Props/Active Camo", "Makes you barely visible"},
+            {"Halo Weapons/Props/Drop Wall", "Unfolds a wall that consists of three tiles and can only be shot through from one side. You can break it by shooting at it, of course"},
+            #endregion
         };
+
+        /// <summary>
+        /// Dictionary based on item's name
+        /// </summary>
+        public static Dictionary<string, string> Items = new();
     }
 }
