@@ -71,7 +71,7 @@ namespace ItemDescriptions
             }
 
             //Time to look in the mod dlls folder!
-            string path = Mod.GetPath<MModClass>("/dlls/" + assemblyShortName + ".dll");
+            string path = Mod.GetPath<Core>("/dlls/" + assemblyShortName + ".dll");
             
             if (!File.Exists(path))
             {

@@ -9,7 +9,7 @@ namespace ItemDescriptions.PatchSystem {
     /// <summary>
     /// The handler that does the patching of AutoPatch attributes.
     /// </summary>
-    public static class MAutoPatchHandler
+    public static class AutoPatchHandler
     {
         /// <summary>
         /// The patching method that finds and executes Auto-Patches.
@@ -27,7 +27,7 @@ namespace ItemDescriptions.PatchSystem {
                     continue;
                 }
 
-                List<MAutoPatchAttribute> attributes = origInfo.GetCustomAttributes(typeof(MAutoPatchAttribute), false).Cast<MAutoPatchAttribute>().ToList();
+                List<AutoPatchAttribute> attributes = origInfo.GetCustomAttributes(typeof(AutoPatchAttribute), false).Cast<AutoPatchAttribute>().ToList();
 
                 foreach (var attribute in attributes)
                 {
@@ -67,7 +67,7 @@ namespace ItemDescriptions.PatchSystem {
         private static IEnumerable<MethodInfo> GetAllAutoPatches()
         {
             return Assembly.GetExecutingAssembly().GetTypes().SelectMany(x => x.GetMethods()).Where(x =>
-                x.GetCustomAttributes(typeof(MAutoPatchAttribute), false).FirstOrDefault() != null);
+                x.GetCustomAttributes(typeof(AutoPatchAttribute), false).FirstOrDefault() != null);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace ItemDescriptions.PatchSystem
     /// This is a Auto-Attribute that allows you to automatically and easily patch methods with Harmony
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    public class MAutoPatchAttribute : Attribute
+    public class AutoPatchAttribute : Attribute
     {
         public readonly Type Type;
         public readonly string Method;
@@ -24,7 +24,7 @@ namespace ItemDescriptions.PatchSystem
         /// This can avoid ambiguity issues with methods that have multiple overloads.
         /// </param>
         /// 
-        public MAutoPatchAttribute(Type type, string method, MPatchType patchType, Type[] parameters = null)
+        public AutoPatchAttribute(Type type, string method, MPatchType patchType, Type[] parameters = null)
         {
             Method = method;
             PatchType = patchType;

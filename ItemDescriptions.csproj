@@ -63,9 +63,10 @@
   <ItemGroup>
     <Compile Include="ItemDescriptions\AssemblyInfo.cs" />
     <Compile Include="ItemDescriptions\DependencyResolver.cs" />
-    <Compile Include="ItemDescriptions\MAutoPatchAttribute.cs" />
-    <Compile Include="ItemDescriptions\MAutoPatchHandler.cs" />
-    <Compile Include="ItemDescriptions\MModClass.cs" />
+    <Compile Include="ItemDescriptions\Emerald.cs" />
+    <Compile Include="ItemDescriptions\AutoPatchAttribute.cs" />
+    <Compile Include="ItemDescriptions\AutoPatchHandler.cs" />
+    <Compile Include="ItemDescriptions\Core.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
